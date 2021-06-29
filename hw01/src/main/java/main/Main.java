@@ -4,18 +4,22 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import servlets.AllRequestsServlet;
+import servlets.MirrorServlet;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        AllRequestsServlet servlet = new AllRequestsServlet();
+        AllRequestsServlet allRequestsServlet = new AllRequestsServlet();
+        MirrorServlet mirrorServlet = new MirrorServlet();
 
         ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        contextHandler.addServlet(new ServletHolder(servlet), "/*");
+        contextHandler.addServlet(new ServletHolder(mirrorServlet), "/mirror");
+        contextHandler.addServlet(new ServletHolder(allRequestsServlet), "/*");
 
         Server server = new Server(8080);
         server.setHandler(contextHandler);
 
         server.start();
+        System.out.println("Server started");
         server.join();
     }
 }

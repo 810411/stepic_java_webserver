@@ -11,7 +11,7 @@ import java.io.Writer;
 import java.util.Map;
 
 public class PageGenerator {
-    private static final String HTML_DIR = "hw01" + File.separator + "src" + File.separator + "templates";
+    private static final String HTML_DIR = "hw01" + File.separator + "templates";
 
     private static PageGenerator pageGenerator;
     private final Configuration cfg;
